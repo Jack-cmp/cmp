@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style1.css">
+    <script src="/javascripts/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <div>
+        <img class="a" src="img/b.jpg">
+    </div>
+    <form class="a" action="/register" method="post">
+        <input type="text" name="name" placeholder="用户名" id="__name"/>
+        <input type="password" name="pass" placeholder="密码" id="__pass"/>
+        <input class="b" type="submit" value="注册"/>
+        <a class="b" href="/login" target="_self">立即登录</a>
+    </form>
+
+    <!-- <script>
+        $('#register').click(function (){
+            $.ajax({
+                type:"post",
+                url:"/register",
+                data:{"name": $("#__name").val(), "pass": $("#__pass").val()},
+                success: function (data){
+                    if (data.status == 1){
+                        window.location.href = "/"
+                        alert("恭喜你，注册成功")
+                    }else{
+                        alert("抱歉，注册失败")
+                    }
+                }
+            })
+        })
+    </script> -->
+</body>
+</html>

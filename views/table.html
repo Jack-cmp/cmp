@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>UI组件之排序表格</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/Table.css">
+	<script src="/javascripts/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+	<table>
+		<thead>
+			<td colspan="3">
+				<input type="button" value="新增" id="add_button"/>
+			</td>
+			<tr>
+				<td>姓名</td>
+				<td>密码</span></td>
+				<td>按钮</td>	
+			</tr>
+		</thead>
+		<tbody id="showdata">
+			<% list.forEach((o,i)=>{%>
+		<tr>
+				<td><%=o.name%></td>
+				<td><%=o.pass%></td>
+				<td>
+				     <input type="button" value="删除" class="del_button" data-id=<%=o.id %>>
+				
+				     <input type="button" value="修改" class="upd_button" data-id=<%=o.id %>>
+				</td>
+		</tr>
+			 <% }) %>
+		</tbody>
+	</table>
+	<script type="text/javascript" src="/javascripts/Table.js"></script>
+	<script src="/javascripts/task.js"></script>
+	<script src="/javascripts/jq_demo.js"></script>
+</body>
+</html>
