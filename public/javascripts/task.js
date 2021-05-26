@@ -7,14 +7,12 @@ $(function(){
 
 Array.from(document.getElementsByClassName("del_button")).forEach(i =>
   i.onclick = function(){
-    // alert(1)
 let ind= i.getAttribute("data-id");
 $.ajax({
   url:'/table/del/'+ind,
   type:"delete",
   success:function(data){
     if(data == "删除成功"){
-      // alert('失败')
       $(i).parent().parent().remove()
     }
   }

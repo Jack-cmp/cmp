@@ -33,11 +33,6 @@ router.get('/', function(req, res, next) {
     res.render('add');
   } );
 
-// router.post('/add', function(req, res) {
-//     let user = new User(req.body.name,req.body.s1);
-//       connection.query("insert into ht_user (name,s1) value(?,?)",[user.name,user.s1],(err,results,fields) => {
-//        res.redirect('/table');
-//        });
 
 //新增信息
 router.post('/add',(req,res) =>{
@@ -46,7 +41,6 @@ router.post('/add',(req,res) =>{
   connection.query(query,(err,results,fidelds) => {
     if(err) throw err;
     console.log(user);
-    // res.send("register success");
     res.redirect('/table')
   })
   req.session.user = user;
@@ -54,7 +48,6 @@ router.post('/add',(req,res) =>{
 
 //删除功能 
 router.delete('/del/:id',(req,res) => {
-  // console.log(1);
   let query = `delete from ht_user where id = ${req.params.id}`
   connection.query(query,(err,results,fidelds) => {
     if (err) throw err;
@@ -69,13 +62,13 @@ router.get('/table/del/:id',(req,res) => {
   connection.query(query,(err,results,fidelds) => {
     if (err) throw err;
     console.log(results);
-    res.render('add2')
+    res.render('add')
     
   })
 });
 
 
-router.post ('add2/:id', (req,res) =>{
+router.post ('add/:id', (req,res) =>{
   let user = {
     'name' : req.body.name,
     'pass' : req.body.pass
@@ -91,7 +84,7 @@ router.post ('add2/:id', (req,res) =>{
       res.render('table')
     })
   })
-})
+});
 
 
 fs.readFile(path.join(__dirname, "./bean/table.json"), function (err, d) {
