@@ -4,7 +4,7 @@ document.getElementById("add_button").onclick = function(){
 
 $(function(){
 
-
+//删除
 Array.from(document.getElementsByClassName("del_button")).forEach(i =>
   i.onclick = function(){
 let ind= i.getAttribute("data-id");
@@ -19,9 +19,10 @@ $.ajax({
 })
   });
 
+  //修改
   Array.from(document.getElementsByClassName("upd_button")).forEach(i =>
     i.onclick = function(){
   let ind= this.getAttribute("data-id");
-  window.location.href = '/table/update/'+ind;
+  window.location.href = '/table/add2/'+ind;
     });
   })

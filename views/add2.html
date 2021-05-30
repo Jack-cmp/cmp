@@ -7,12 +7,14 @@
     <title>新增界面</title>
 </head>
 <body>
-    <form action="/table/add2" method="POST">
-        <input type="text" name="name"  placeholder="用户名" value="<%=obj.name %>" />
+    <% arr.forEach(i=>{%>
+    <form action="/table/add2/<%=i.id%>" method="POST">
+        <input type="text" name="name"  placeholder="用户名" value="<%=i.name %>" />
         <br/>
-        <input type="number" name="pass" placeholder="密码" value="<%=obj.pass %>" />
+        <input type="number" name="pass" placeholder="密码" value="<%=i.pass %>" />
         <br/>
         <input type="submit"/>
     </form>
+    <% }) %>
 </body>
 </html>

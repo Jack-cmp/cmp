@@ -57,18 +57,17 @@ router.delete('/del/:id',(req,res) => {
 });
 
 //修改
-router.get('/table/del/:id',(req,res) => {
+router.get('/add2/:id',(req,res) => {
   let query = `select*from ht_user where id = "${req.params.id}"`
   connection.query(query,(err,results,fidelds) => {
     if (err) throw err;
     console.log(results);
-    res.render('add')
-    
+    res.render('add2',{arr:results})
   })
 });
 
 
-router.post ('add/:id', (req,res) =>{
+router.post ('/add2/:id', (req,res) =>{
   let user = {
     'name' : req.body.name,
     'pass' : req.body.pass
@@ -77,11 +76,12 @@ router.post ('add/:id', (req,res) =>{
   connection.query(query,(err,results,fidelds) => {
     if (err) throw err;
     console.log(results);
-    let query = `insert into ht_user (id ,name,pass) values('${req.params.id}','${req.params.name}','${req.params.pass}',)`
+    let query = `insert into ht_user (id,name,pass) values('${req.params.id}','${user.name}','${user.pass}')`
     connection.query(query,(err,results,fidelds) => {
       if (err) throw err;
       console.log(results);
-      res.render('table')
+      res.redirect('/table')
+      // res.render('table')
     })
   })
 });
@@ -117,12 +117,12 @@ router.get('/del/:id', (req, res) => {
   res.redirect('/table');
 })
 
-router.get('/update/:id', (req, res) => {
-  res.render("add",
-    {
-      obj: data[req.params.id]
-    })
-});
+// router.get('/update/:id', (req, res) => {
+//   res.render("add",
+//     {
+//       obj: data[req.params.id]
+//     })
+// });
 
 
 
