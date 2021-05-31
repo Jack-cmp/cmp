@@ -7,6 +7,10 @@
 	<script src="/javascripts/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+	<div>
+		<input type="text" id="queryInput" placeholder="请查询">
+		<button class="search" onclick="">查询</button>
+	</div>
 	<table>
 		<thead>
 			<td colspan="3">
@@ -19,14 +23,14 @@
 			</tr>
 		</thead>
 		<tbody id="showdata">
-			<% list.forEach((o,i)=>{%>
+			<% list.forEach((i)=>{%>
 		<tr>
-				<td><%=o.name%></td>
-				<td><%=o.pass%></td>
+				<td><%=i.name%></td>
+				<td><%=i.pass%></td>
 				<td>
-				     <input type="button" value="删除" class="del_button" data-id=<%=o.id %>>
+				     <input type="button" value="删除" class="del_button" data-id=<%=i.id %>>
 				
-				     <input type="button" value="修改" class="upd_button" data-id=<%=o.id %>>
+				     <input type="button" value="修改" class="upd_button" data-id=<%=i.id %>>
 				</td>
 		</tr>
 			 <% }) %>

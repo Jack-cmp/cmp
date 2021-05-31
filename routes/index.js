@@ -14,7 +14,9 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-
+// router.get('/', function(req,res ,next){
+//   connection.query("select*from home-page",function(err,re))
+// })
 
 
 module.exports = router;

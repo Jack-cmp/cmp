@@ -22,7 +22,7 @@ let connection = mysql.createConnection({
 
 //展示信息
 router.get('/', function(req, res, next) {
-  connection.query("select*from ht_user order by id desc ",function(err,results,fields){
+  connection.query("select*from register order by id desc ",function(err,results,fields){
   res.render('table',{
     list:results
   });
@@ -37,7 +37,7 @@ router.get('/', function(req, res, next) {
 //新增信息
 router.post('/add',(req,res) =>{
   let user = new User(req.body.name,req.body.pass);
-  let query = 'insert ht_user (name,pass) values( "' +user.name + '","' + user.pass + '")'
+  let query = 'insert register (name,pass) values( "' +user.name + '","' + user.pass + '")'
   connection.query(query,(err,results,fidelds) => {
     if(err) throw err;
     console.log(user);
@@ -48,7 +48,7 @@ router.post('/add',(req,res) =>{
 
 //删除功能 
 router.delete('/del/:id',(req,res) => {
-  let query = `delete from ht_user where id = ${req.params.id}`
+  let query = `delete from register where id = ${req.params.id}`
   connection.query(query,(err,results,fidelds) => {
     if (err) throw err;
     console.log(results);
@@ -58,7 +58,7 @@ router.delete('/del/:id',(req,res) => {
 
 //修改
 router.get('/add2/:id',(req,res) => {
-  let query = `select*from ht_user where id = "${req.params.id}"`
+  let query = `select*from register where id = "${req.params.id}"`
   connection.query(query,(err,results,fidelds) => {
     if (err) throw err;
     console.log(results);
@@ -67,22 +67,36 @@ router.get('/add2/:id',(req,res) => {
 });
 
 
+
 router.post ('/add2/:id', (req,res) =>{
   let user = {
     'name' : req.body.name,
     'pass' : req.body.pass
   }
-  let query = `delete from ht_user where id = "${req.params.id}"`
+  let query = `delete from register where id = "${req.params.id}"`
   connection.query(query,(err,results,fidelds) => {
     if (err) throw err;
     console.log(results);
-    let query = `insert into ht_user (id,name,pass) values('${req.params.id}','${user.name}','${user.pass}')`
+    let query = `insert into register (id,name,pass) values('${req.params.id}','${user.name}','${user.pass}')`
     connection.query(query,(err,results,fidelds) => {
       if (err) throw err;
       console.log(results);
       res.redirect('/table')
       // res.render('table')
     })
+  })
+});
+
+
+//查询
+router.post('/:message',(req,res) => {
+  let message = req.params.message
+  let query = `select*from register where name like "%${message}%"`
+  connection.query(query,(err,results,fidelds) => {
+    if (err) throw err;
+    console.log(results);
+    // res.render('add2',{arr:results})
+    res.send(results)
   })
 });
 

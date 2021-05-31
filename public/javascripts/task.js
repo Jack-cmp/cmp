@@ -26,3 +26,28 @@ $.ajax({
   window.location.href = '/table/add2/'+ind;
     });
   })
+
+
+  //搜索商品
+$(function () {
+  $(".search").click(function () {
+      let message = document.getElementById("queryInput").value
+      $.ajax({
+          type: "post",
+          url: "/table/" + message,
+          success: function (data) {
+              document.getElementById("showdata").innerHTML = data.map((i, ind) =>
+                  ` <tr>
+              <td>${i.name}</td>
+              <td>${i.pass}</td>
+              <td>
+                   <input type="button" value="删除" class="del_button" data-id=${ind}/>
+              
+                   <input type="button" value="修改" class="upd_button" data-id=${ind}/>
+              </td>
+              </tr>
+              `).join("");
+          }
+      })
+  })
+});
